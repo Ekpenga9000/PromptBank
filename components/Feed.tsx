@@ -14,6 +14,7 @@ const Feed = () => {
           Search
         </button>
       </div>
+      
           {/* This would contain the card list. */}
     </div>
   )
