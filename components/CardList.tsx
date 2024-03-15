@@ -3,7 +3,7 @@ import React from 'react'
 
 const CardList = () => {
   return (
-      <div>
+      <div className='feed'>
           <PromptCard />
     </div>
   )
