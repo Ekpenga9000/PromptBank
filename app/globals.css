@@ -2,32 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.main {
+  background-color: #fff;
+  opacity: 0.8;
+  background-image: linear-gradient(#eeeeee 2px, transparent 2px),
+    linear-gradient(90deg, #eeeeee 2px, transparent 2px),
+    linear-gradient(#eeeeee 1px, transparent 1px),
+    linear-gradient(90deg, #eeeeee 1px, #f3f3f6 1px);
+  background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.title {
+  background: #cf6315;
+  background: linear-gradient(to right, #cf6315 0%, #cf1512 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.desc {
+  @apply mt-5 text-lg sm:text-xl max-w-2xl;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
