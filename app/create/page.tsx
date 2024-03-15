@@ -1,13 +1,14 @@
-import Form from '@/components/Form'
-import React from 'react'
+import CreatePrompt from "@/components/CreatePrompt";
+import React from "react";
 
 const CreatePage = () => {
-  return (
-      <main className='px-2'>
-          <h1 className='text-2xl font-semibold'>Create and Share your brilliant AI prompt ideas</h1>
-          <Form />
-    </main>
-  )
-}
 
-export default CreatePage
+
+  return (
+    <main className="px-2">
+      <CreatePrompt />
+    </main>
+  );
+};
+
+export default CreatePage;

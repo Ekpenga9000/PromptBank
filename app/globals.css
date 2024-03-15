@@ -20,6 +20,13 @@
   -webkit-text-fill-color: transparent;
 }
 
+/* custom styles */
+.blue_gradient {
+  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+}
+.head_text {
+  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+}
 .desc {
   @apply mt-5 text-lg sm:text-xl max-w-2xl;
 }
@@ -50,5 +57,9 @@
 }
 
 .form_input {
-  @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0;
+  @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0 bg-white;
+}
+
+.bg-primary {
+  @apply bg-gradient-to-r from-[#cf6315] to-[#cf1512];
 }
