@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react";
+import CardList from "./CardList";
 
 const Feed = () => {
   return (
-      <div>
+    <div>
       {/* this would contain the search bar */}
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center mb-6">
         <input
           type="text"
           placeholder="Search for a prompt"
@@ -14,10 +15,11 @@ const Feed = () => {
           Search
         </button>
       </div>
-      
-          {/* This would contain the card list. */}
-    </div>
-  )
-}
 
-export default Feed
+      {/* This would contain the card list. */}
+      <CardList />
+    </div>
+  );
+};
+
+export default Feed;

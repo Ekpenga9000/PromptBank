@@ -7,7 +7,7 @@ export default function Home() {
       <p className="text-center text-zinc-900 desc">
         PromptBank is an open source platform where you can share your AI generated prompts and get feedback from the community.
       </p>
-      <section className="mt-4">
+      <section className="mt-6">
         <Feed />
       </section>
     </main>
