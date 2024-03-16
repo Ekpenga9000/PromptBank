@@ -5,11 +5,11 @@ import Link from "next/link";
 
 const Form = ({ type, prompt, setPrompt, submitting, handleSubmit }: FormProps) => {
   return (
-    <section className="w-full max-w-full flex-start flex-col">
+    <section className="w-full max-w-full flex flex-col items-center">
       <h1 className="head_text text-left">
         <span className="blue_gradient"> {type} Your Prompt </span>
       </h1>
-      <p className="desc text-left max-w-md">
+      <p className="desc text-center max-w-md ">
         {type} and share amazing prompts with the world, and let your
         imagination run wild with any AI-powered platform.
       </p>
