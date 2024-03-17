@@ -11,7 +11,7 @@ const NavBar = () => {
         <ul className="flex item-center gap-5">
           <li>
             <Link href="/prompts">
-              <i className="bx bx-store"></i> Marketplace
+              <i className="bx bx-compass"></i> Explore
             </Link>{" "}
             {/* This would be the link to see all prompts. */}
           </li>
@@ -21,7 +21,7 @@ const NavBar = () => {
             </Link>
           </li>
           <li>
-            <Link href="/signin">
+            <Link href="/login">
               <i className="bx bx-log-in-circle"></i> Login
             </Link>
           </li>
