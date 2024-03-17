@@ -9,6 +9,14 @@ export interface FormProps {
     handleSubmit: (e: any) => void;
 };
 
+export interface RegistrationUser{
+    username: string;
+    email: string;
+    password: string;
+    confirmPassword?: string;
+};
+
+
 export interface AuthenticationComponentProps {
     isLogin: boolean;
 };

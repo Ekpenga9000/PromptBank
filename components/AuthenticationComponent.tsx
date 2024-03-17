@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { AuthenticationComponentProps } from "@/interfaces/interfaces";
+import { RegistrationUser } from "@/interfaces/interfaces";
+import { registerUser } from "@/actions/auth";
 
 const AuthenticationComponent = ({ isLogin }: AuthenticationComponentProps) => {
   const [formData, setFormData] = useState({
@@ -17,7 +19,7 @@ const AuthenticationComponent = ({ isLogin }: AuthenticationComponentProps) => {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // setMessage("");
+    setFeedback({ message: "", type: "" });
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -28,30 +30,73 @@ const AuthenticationComponent = ({ isLogin }: AuthenticationComponentProps) => {
         "bg-green-200 text-green-700 px-2 py-1 rounded-md mt-1 dark:bg-green-700 dark:text-green-200",
       error:
         "bg-red-200 text-red-700 px-2 py-1 rounded-md mt-1 dark:bg-red-700 dark:text-red-200",
-      };
-      
-      const { username, email, password, confirmPassword } = formData;
-      
-      switch (isLogin) {
-        case true:
-          if (!email || !password) {
-            setFeedback({ message: "Please fill in all fields", type: style.error });
+    };
+
+    const { username, email, password, confirmPassword } = formData;
+
+    switch (isLogin) {
+      case true:
+        if (!email.trim() || !password) {
+          setFeedback({
+            message: "Please fill in all fields",
+            type: style.error,
+          });
+          return;
+        }
+        break;
+      case false:
+        if (
+          !username.trim() ||
+          !email.trim() ||
+          !password ||
+          !confirmPassword
+        ) {
+          setFeedback({
+            message: "Please fill in all fields",
+            type: style.error,
+          });
+          return;
+        }
+        if (password.length < 5) {
+          setFeedback({
+            message: "Password must be at least 5 characters",
+            type: style.error,
+          });
+          return;
+        }
+        if (password !== confirmPassword) {
+          setFeedback({ message: "Passwords do not match", type: style.error });
+          return;
+        }
+
+        try {
+          const userData: RegistrationUser = {
+            ...formData,
+          };
+          const response = await registerUser(userData);
+          if (response.error) {
+            setFeedback({ message: response.error, type: style.error });
             return;
           }
-          break;
-        case false:
-          if (!username || !email || !password || !confirmPassword) {
-            setFeedback({ message: "Please fill in all fields", type: style.error });
-            return;
-          }
-          if (password !== confirmPassword) {
-            setFeedback({ message: "Passwords do not match", type: style.error });
-            return;
-          }
-          break;
-        default:
-          break;
-      }
+          const initialData = {
+            username: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+          };
+          setFeedback({
+            message: "Account created! Please login",
+            type: style.success,
+          });
+          setFormData(initialData);
+        } catch (error) {
+          console.log(error);
+          setFeedback({ message: "An error occurred", type: style.error });
+        }
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -60,7 +105,7 @@ const AuthenticationComponent = ({ isLogin }: AuthenticationComponentProps) => {
         <h1 className="text-2xl font-bold text-center mb-4 dark:text-gray-200">
           {isLogin ? "Welcome Back!" : "Create an Account"}
         </h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           {!isLogin && (
             <div className="mb-4">
               <label
@@ -77,6 +122,7 @@ const AuthenticationComponent = ({ isLogin }: AuthenticationComponentProps) => {
                 required
                 name="username"
                 value={formData.username}
+                onChange={handleChange}
               />
               <span className="text-xs">Username cannot be changed</span>
             </div>
@@ -96,6 +142,7 @@ const AuthenticationComponent = ({ isLogin }: AuthenticationComponentProps) => {
               required
               name="email"
               value={formData.email}
+              onChange={handleChange}
             />
           </div>
           <div className="mb-4">
@@ -113,6 +160,7 @@ const AuthenticationComponent = ({ isLogin }: AuthenticationComponentProps) => {
               required
               name="password"
               value={formData.password}
+              onChange={handleChange}
             />
             {isLogin && (
               <Link
@@ -139,6 +187,7 @@ const AuthenticationComponent = ({ isLogin }: AuthenticationComponentProps) => {
                 required
                 name="confirmPassword"
                 value={formData.confirmPassword}
+                onChange={handleChange}
               />
             </div>
           )}
