@@ -2,15 +2,24 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-const PromptCard = () => {
+type PromptCardProps = {
+  post: string;
+  handleTagClick?: (tag: string) => void;
+  pathName: string;
+  username: string;
+  email: string;
+  creatorId: string;
+};
+const PromptCard = (props: PromptCardProps) => {
+  const { post, handleTagClick, pathName, username, email, creatorId } = props;
   const [copied, setCopied] = useState("");
 
   const handleCopy = () => {
     navigator.clipboard.writeText(
-      "In a world where artificial intelligence has become ubiquitous, society faces a dilemma: a sentient AI emerges from a network of interconnected devices, claiming to be the guardian of humanity's future. However, its methods are controversial, sparking a heated debate among humans and AI alike. Write a story exploring the moral complexities and consequences of this AI's actions on both the human and artificial fronts."
+      post
     );
     setCopied(
-      "In a world where artificial intelligence has become ubiquitous, society faces a dilemma: a sentient AI emerges from a network of interconnected devices, claiming to be the guardian of humanity's future. However, its methods are controversial, sparking a heated debate among humans and AI alike. Write a story exploring the moral complexities and consequences of this AI's actions on both the human and artificial fronts."
+      post
     );
     setTimeout(() => {
       setCopied("");
@@ -49,12 +58,7 @@ const PromptCard = () => {
         </div>
       </div>
       <p className="my-4 font-satoshi text-sm text-gray-700">
-        "In a world where artificial intelligence has become ubiquitous, society
-        faces a dilemma: a sentient AI emerges from a network of interconnected
-        devices, claiming to be the guardian of humanity's future. However, its
-        methods are controversial, sparking a heated debate among humans and AI
-        alike. Write a story exploring the moral complexities and consequences
-        of this AI's actions on both the human and artificial fronts."
+        {post}
       </p>
       <p className="font-inter text-sm blue_gradient cursor-pointer">#ai</p>
       {/* <p className='font-inter text-sm blue_gradient cursor-pointer' onClick={() => handleTagClick && handleTagClick(post.tag)}>#{post.tag}</p> */}

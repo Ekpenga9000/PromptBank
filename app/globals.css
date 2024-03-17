@@ -48,7 +48,7 @@
 }
 
 .feed {
-  @apply mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
+  @apply w-full max-w-xl flex justify-center flex-wrap items-center flex-col gap-2;
 }
 
 /* form component styles */
