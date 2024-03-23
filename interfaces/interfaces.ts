@@ -10,7 +10,7 @@ export interface FormProps {
 };
 
 export interface RegistrationUser{
-    username: string;
+    username?: string;
     email: string;
     password: string;
     confirmPassword?: string;

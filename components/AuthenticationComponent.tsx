@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AuthenticationComponentProps } from "@/interfaces/interfaces";
 import { RegistrationUser } from "@/interfaces/interfaces";
 import { registerUser } from "@/actions/auth";
+import { signIn } from "next-auth/react";
 
 const AuthenticationComponent = ({ isLogin }: AuthenticationComponentProps) => {
   const [formData, setFormData] = useState({
@@ -42,6 +43,22 @@ const AuthenticationComponent = ({ isLogin }: AuthenticationComponentProps) => {
             type: style.error,
           });
           return;
+        }
+        try {
+          const res = await signIn("credentials", {
+            email,
+            password,
+            redirect: false,
+          });
+
+          console.log({ res });
+          
+        } catch (error) {
+          console.log(error);
+          setFeedback({
+            message: "An error occurred, please retry",
+            type: style.error,
+          });
         }
         break;
       case false:
@@ -89,8 +106,7 @@ const AuthenticationComponent = ({ isLogin }: AuthenticationComponentProps) => {
             type: style.success,
           });
           setFormData(initialData);
-        } catch (error) {
-          console.log(error);
+        } catch {
           setFeedback({ message: "An error occurred", type: style.error });
         }
         break;
@@ -197,7 +213,7 @@ const AuthenticationComponent = ({ isLogin }: AuthenticationComponentProps) => {
                 type="checkbox"
                 id="remember"
                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 focus:outline-none"
-                checked
+                
               />
               <label
                 htmlFor="remember"
@@ -221,7 +237,7 @@ const AuthenticationComponent = ({ isLogin }: AuthenticationComponentProps) => {
           </button>
         </form>
         {feedback.message && (
-          <p className={`${feedback.type} text-xs`}>{feedback.message}</p>
+          <p className={`${feedback.type} text-xs mt-4`}>{feedback.message}</p>
         )}
       </div>
     </section>
