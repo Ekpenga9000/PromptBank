@@ -25,7 +25,7 @@ export default function RootLayout({
           href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
           rel="stylesheet"
         />
-      <title>PromptBank</title>
+      <title>PromptWisdom</title>
       </head>
       <body className={inter.className}>
         <Container>

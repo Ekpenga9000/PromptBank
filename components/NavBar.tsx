@@ -8,7 +8,7 @@ const NavBar = () => {
                 <Link href="/" className='title font-bold text-lg'>PromptBank</Link>
                 <ul className='flex item-center gap-5'>
                     <li>
-                        <Link href="/prompts"><i className='bx bx-store' ></i>Marketplace</Link> {/* This would be the link to see all prompts. */}
+                        <Link href="/prompts"><i className='bx bx-store' ></i>Explore</Link> {/* This would be the link to see all prompts. */}
                     </li>
                     <li>
                         <Link href="/create"><i className='bx bx-plus'></i> Create</Link>
