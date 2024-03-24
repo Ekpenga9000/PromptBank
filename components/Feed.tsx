@@ -1,4 +1,5 @@
 import React from 'react'
+import CardList from './CardList'
 
 const Feed = () => {
   return (
@@ -15,7 +16,7 @@ const Feed = () => {
         </button>
       </div>
       
-          {/* This would contain the card list. */}
+      <CardList/>
     </div>
   )
 }
