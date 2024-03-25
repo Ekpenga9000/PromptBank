@@ -21,14 +21,14 @@ export async function registerUser(user: UserInterface) {
   try {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    const newUser = await db.user.create({
+    await db.user.create({
       data: {
         username: username || "",
         email: email,
         password: hashedPassword,
       },
     });
-    return newUser;
+    return {message: "User registered successfully"};
   } catch (error) {
     console.log(error);
     return { message: "An error occurred while trying to register user" };
